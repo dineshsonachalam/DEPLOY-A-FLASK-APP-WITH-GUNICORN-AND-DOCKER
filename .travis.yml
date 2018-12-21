@@ -2,15 +2,11 @@ sudo: required
 services:
 - docker
 
-# Before installation
-before_install:
-- sudo gem install bundler
-- docker build -t dineshsonachalam/deploy_flask_app_with_gunicorn:1.0.0 .
 
+before_install:
+- docker build -t dineshsonachalam/deploy_flask_app_with_gunicorn:1.0.1 .
 script:
   #log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-
-after_success:
   #take built images and push to Docker hub
-  - docker push dineshsonachalam/deploy_flask_app_with_gunicorn:1.0.0
+  - docker push dineshsonachalam/deploy_flask_app_with_gunicorn:1.0.1
